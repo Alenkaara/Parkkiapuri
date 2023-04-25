@@ -1,0 +1,9 @@
+{
+    "osoite":[{ "paikka":"test1",
+    "vapaatpaikat":"test2"
+},
+{   "paikka":"test3",
+    "vapaatpaikat":"test4"
+}
+]
+}

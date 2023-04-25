@@ -1,0 +1,150 @@
+.logincssheadercontainer {
+    background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    gap: 50px;
+    height: 70px;
+    font-size: 20px;
+    align-items: center;
+    margin-right: auto;
+    padding-top: 13px;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+.logincssbrandText {
+    background-color: rgba(255, 255, 255, 0);
+    width: 300px;
+    font-size: 32px;
+    font-family: "Merriweather", sans-serif;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    margin: 70px;
+}
+
+.logincsscontainer {
+    width: 500px;
+    height: 500px;
+    padding: 2px 2px 2px 2px;
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 690px;
+    top: 190px;
+}
+
+.logincsstitleText {
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    padding-bottom: 14px;
+    padding-top: 45px;
+}
+
+.logincsssubtitleText {
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logincsslowerText {
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+    gap: 6px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+
+.logincssusernameText {
+    margin-left: 100px;
+    margin-top: 25px;
+    width: 37px;
+    height: 17px;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: #8c8c8c;
+    text-align: left;
+    line-height: normal;
+    letter-spacing: 0.4px;
+}
+
+.logincssusernameField {
+    position: absolute;
+    margin-left: -82px;
+    margin-top: 30px;
+    padding-top: 8px;
+    width: 300px;
+    height: 48px;
+    padding: 2px 2px 2px 16px;
+    border-radius: 4px;
+    border: 1px solid #c2c2c2;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    color: #333333;
+    text-align: left;
+}
+
+.logincsspasswordText {
+    margin-left: 100px;
+    margin-top: 90px;
+    width: 66px;
+    height: 17px;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: #8c8c8c;
+    text-align: left;
+    line-height: normal;
+    letter-spacing: 0.4px;
+}
+
+.logincsspasswordField {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: -72px;
+    padding-top: 8px;
+    width: 300px;
+    height: 45px;
+    padding: 2px 2px 2px 16px;
+    border-radius: 4px;
+    border: 1px solid #c2c2c2;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    color: #333333;
+    text-align: left;
+}
+
+.logincsssignInButton {
+    position: absolute;
+    margin-top: 100px;
+    left: 97px;
+    width: 310px;
+    height: 45px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 4px;
+    background-color: #1e98d7;
+    box-sizing: border-box;
+    font-size: 19px;
+    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    line-height: normal;
+}
+
+.logincssmanagerLoginLink {
+    position: absolute;
+    bottom: 15px;
+    left: 175px;
+    font-size: 17px;
+}

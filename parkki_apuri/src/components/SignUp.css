@@ -1,0 +1,78 @@
+.signupcsscontainer {
+    width: 500px;
+    height: 500px;
+    padding: 2px 2px 2px 2px;
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 690px;
+    top: 190px;
+}
+
+.signupcsstitleText {
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    padding-bottom: 14px;
+    padding-top: 45px;
+}
+
+.signupcsssubtitleText {
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.signupcsslowerText {
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+    gap: 6px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+
+.signupcsstextField1 {
+    position: absolute;
+    top: 165px;
+    margin-left: 85px;
+    height: 30px;
+    width: 300px;
+}
+
+.signupcsstextField2 {
+    position: absolute;
+    top: 230px;
+    height: 30px;
+    width: 300px;
+    margin-left: 85px;
+}
+
+.signupcsstextField3 {
+    position: absolute;
+    top: 295px;
+    margin-left: 85px;
+    height: 30px;
+    width: 300px;
+}
+
+.signupcsssignUpButton {
+    position: absolute;
+    margin-top: 260px;
+    left: 87px;
+    width: 310px;
+    height: 45px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 4px;
+    background-color: #1e98d7;
+    box-sizing: border-box;
+    font-size: 19px;
+    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    line-height: normal;
+}
