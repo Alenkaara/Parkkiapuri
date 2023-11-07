@@ -1,264 +1,300 @@
-.container {
-    background-color: aliceblue;
-  }
-  
-  .topBar {
-    margin-top: 15px;
-    margin-left: 1550px;
-  }
-
-.reservation {
-    font-size: large;
+.home-container {
+  z-index: 3;
 }
 
-.buttonLogout {
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    position: absolute;
-    margin-top: -250px;
-    margin-left: 180px;
+.home-topBar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color:#333;
+  color: white;
+  padding: 10px 10px;
+  gap: 10px;
+  margin: 10px;
+  right: -10px;
+  top: -15px;
+  display: inline-block;
+  z-index: 3;
 }
 
-.loginInformation {
-    font-size: large;
-    margin-top: -242px;
-    margin-left: -500px;
-    position: absolute;
+.home-loginInformation {
+  background-color: #30494a;
+  color: white;
+  position: absolute;
+  right: -15px;
+  margin-right: 15px;
+  top: 80px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  z-index: 3;
 }
 
-.resInformation {
-    font-size: large;
-    margin-top: -150px;
-    position: absolute;
+.home-background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1200px;
+  background-image: url('./images/homehall.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.95;
+  z-index: -1;
 }
 
-.resInformationNull {
-  background-color: #f8f8f8;
+.home-reservation {
+  font-size: large;
+  z-index: 3;
+}
+
+.home-res-btn {
+  background-color: #30494a;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  z-index: 3;
+}
+
+.home-buttonLogout {
+  background-color: #30494a;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  width: 130px;
+  z-index: 3;
+}
+
+.home-resInformation {
+  font-size: large;
+  z-index: 3;
+}
+
+.home-resInformationNull {
+
   border-radius: 4px;
-  text-align: center;
+  text-align: center;  background-color: #f8f8f8;
   font-size: 16px;
   font-weight: bold;
   color: #555;
+  z-index: 3;
 }
 
-  table {
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 50%;
-    border-collapse: collapse;
-  }
-  
-  th {
-    background-color: #333;
-    color: white;
-    font-weight: bold;
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: large;
-  }
-  
-  td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  td.available {
-    background-color: #8bc34a;
-  }
-  
-  td.full {
-    background-color: #f44336;
-  }
-  
-  .parking-spots-table td.available {
-    background-color: #8bc34a;
-  }
-  
-  .parking-spots-table td.full {
-    background-color: #f44336;
-  }
+.home-parking-halls {
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 3;
+  margin-top: -100px;
+}
 
-  .parking-halls {
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .parking-hall {
-    cursor: pointer;
-    margin-right: 1rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: large;
-    margin-left: 35px;
-    background-color: #466b69;
-    color: whitesmoke;
-    width: max-content;
-  }
-  
-  .parking-hall.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .table-wrapper {
-    margin-top: 2rem;
-  }
-  
-  .image-div {
-    width: 270px;
-    height: 270px;
-  }
-  
-  html, body, #root, .App {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .wrapper {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  main {
-    flex-grow: 1;
-  }
-  
-  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #30494a;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-    z-index: 999;
-  }
-  
-  * {
-    background-color: transparent;
-  }
-  
-  body {
-    background-color: aliceblue;
-  }
-  
-  .parkinghall2 {
-    cursor: pointer;
-    margin-right: 1rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: large;
-    margin-left: 35px;
-    background-color: #466b69;
-    color: whitesmoke;
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .modal-content {
-    background-color: white;
-    margin-top: 190px;
-    margin-left: 690px;
-    border: 1px solid #888;
-    width: 500px;
-    height: 500px;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .signup-btn {
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    position: absolute;
-    margin-top: -250px;
-    margin-left: 160px;
-  }
-  
-  .login-btn {
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    position: absolute;
-    margin-top: -250px;
-  }
-  
-  .login-btn:hover,
-  .signup-btn:hover,
-  .res-btn:hover,
-  .buttonLogout:hover {
-    background-color: #000000;
-    color: #FFFFFF;
-  }
-  
-  .login-btn {
-    margin-right: 16px;
-  }
+.home-parking-hall {
+  cursor: pointer;
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: large;
+  margin-left: 35px;
+  background-color: #466b69;
+  color: whitesmoke;
+  width: max-content;
+  z-index: 3;
+  transition: all 0.2s ease-in-out;
+}
 
-  .res-btn {
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    position: absolute;
-    margin-top: -250px;
-    margin-left: 10px;
-  }
+.home-parking-hall.active {
+  background-color: #4CAF50;
+  color: white;
+  z-index: 3;
+}
+
+.home-parking-hall-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.home-parking-hall-details img {
+  width: 300px;
+  height: 199px;
+  margin-bottom: 10px;
+  z-index: 3;
+}
+
+.home-parking-hall-details div {
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  font-size: 27px;
+  margin: 5px 0;
+  z-index: 3;
+}
+
+.home-parking-hall-location {
+  background-color: #30494a;
+  height: 100%;
+  padding-inline: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-parking-hall-phone {
+  background-color: #30494a;
+  height: 100%;
+  padding-inline: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-table-wrapper {
+  margin-top: 2rem;
+  z-index: 3;
+}
+
+html, body, #root, .App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+.home-wrapper {
+  min-height: 100%;
+  margin-top: 260px;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* .home-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #30494a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  z-index: 2;
+} */
+
+* {
+  background-color: transparent;
+}
+
+.home-parking-spots {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: large;
+  margin-left: 35px;
+  color: white;
+  z-index: 3;
+  
+}
+
+.home-modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.home-modal-content {
+  background-color: transparent;
+  margin-top: 190px;
+  margin-left: 690px;
+  border: 1px solid #888;
+  width: 500px;
+  height: 500px;
+  z-index: 3;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.home-signup-btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: -250px;
+  margin-left: 160px;
+  z-index: 3;
+}
+
+.home-login-btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  z-index: 3;
+}
+
+.home-login-btn:hover,
+.home-signup-btn:hover,
+.home-res-btn:hover,
+.home-buttonLogout:hover,
+.home-parking-hall:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.home-login-btn {
+  margin-right: 16px;
+  z-index: 3;
+}

@@ -1,4 +1,184 @@
 .signupcsscontainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #466b69;
+  z-index: 2;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://wallpapers.com/images/high/seton-hall-university-car-garage-parking-yttxcieu8u2kr8rp.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.signupcsstitleText {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.signupcsssubtitleText {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.signupcsstextField1,
+.signupcsstextField2,
+.signupcsstextField3 {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  color: white;
+  border-radius: 4px;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+.signupcsssignUpButton {
+  background-color: #466b69;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .signupcsstextField1,
+  .signupcsstextField2,
+  .signupcsstextField3 {
+    max-width: 300px;
+    z-index: 2;
+  }
+}
+
+
+/* .signupcsscontainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #466b69;
+  background-image: url('https://wallpapers.com/images/high/seton-hall-university-car-garage-parking-yttxcieu8u2kr8rp.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+}
+
+.signupcsstitleText {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.signupcsssubtitleText {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.signupcsstextField1,
+.signupcsstextField2,
+.signupcsstextField3 {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.signupcsssignUpButton {
+  background-color: #466b69;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .signupcsstextField1,
+  .signupcsstextField2,
+  .signupcsstextField3 {
+    max-width: 300px;
+  }
+} */
+
+
+/* .signupcsscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .signupcsstitleText {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .signupcsssubtitleText {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .signupcsstextField1,
+  .signupcsstextField2,
+  .signupcsstextField3 {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .signupcsssignUpButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .signupcsstextField1,
+    .signupcsstextField2,
+    .signupcsstextField3 {
+      max-width: 300px;
+    }
+  }
+
+/* .signupcsscontainer {
     width: 500px;
     height: 500px;
     padding: 2px 2px 2px 2px;
@@ -75,4 +255,4 @@
     color: #ffffff;
     text-align: center;
     line-height: normal;
-}
+} */

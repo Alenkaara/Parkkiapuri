@@ -1,37 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import * as ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import parkkilogomuokattu from './parkkilogomuokattu.png';
+import parkkilogomuokattu from './images/parkkilogomuokattu.png';
+import electricCar from './images/electric_car.png';
 import './Home.css';
-import Login from './Login';
-import SignUp from './SignUp';
 
 function Home() {
+  let navigate = useNavigate();
 
-  // Footer funktio on sivun alaosassa oleva palkki, mikä voi sisältää haluttavaa sisältöä, yleensä tietoa ja linkkejä.
-  function Footer() {
-      return (
-      <footer style={{
-          background: "#30494a",
-          color: "#fff",
-          padding: "1rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "20px"
-      }}>
-          <div style={{
-          maxWidth: "800px",
-          margin: "0 auto",
-          textAlign: "center"
-          }}>
-          <p>Parkkiapuri &copy; {new Date().getFullYear()}</p>
-          </div>
-      </footer>
-      );
-  }
-
+  const [ hallDetails, setHallDetails ] = useState({});
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
   const [ info, setInfo ] = useState([]);
   const [ parkingInfo, setParkingInfo ] = useState([]);
@@ -46,26 +24,40 @@ function Home() {
   const sensor = localStorage.getItem("sensor");
   const Parkkitalo_id = localStorage.getItem("Parkkitalo_id");
 
+  const handleParkingHallClick = async (parkingHall) => {
+    try {
+      const results = await axios.get(
+        `https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-locations.json`
+      );
+
+      const hallInfo = results.data.result.find((hall) => hall.sijainti === parkingHall);
+      setHallDetails(hallInfo);
+      setActiveParkingHall(parkingHall);
+      getParkingInfo(parkingHall);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getReservations = async () => {
     try {
+      const userid = localStorage.getItem("userid");
       const response = await axios.get(
-        "https://13.51.255.38:3000/res",
-        {
-          rekisteri: rekisteri
-        }
+        `https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-reservation.json?userid=${userid}`
       );
-      setReservations(response.data);
-      localStorage.setItem("id", response.data[0].id);
-      localStorage.setItem("etaisyys", response.data[0].etaisyys);
-      localStorage.setItem("varattu", response.data[0].varattu);
-      localStorage.setItem("sensor", response.data[0].sensor);
-      localStorage.setItem("Parkkitalo_id", response.data[0].Parkkitalo_id);
-      console.log(response.data)
+      setReservations(response.data.result);
+      localStorage.setItem("User_userid", response.data.result[0].User_userid);
+      localStorage.setItem("endTime", response.data.result[0].endTime);
+      localStorage.setItem("id", response.data.result[0].id);
+      localStorage.setItem("parkki", response.data.result[0].parkki);
+      localStorage.setItem("rekisteri", response.data.result[0].rekisteri);
+      localStorage.setItem("sijainti", response.data.result[0].sijainti);
+      localStorage.setItem("startTime", response.data.result[0].startTime);
+      console.log(response.data.result);
     } catch (error) {
       console.log(error);
     }
   };
-
 
   useEffect(() => {
     if (isLoggedIn==true) {
@@ -82,10 +74,9 @@ function Home() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('rekisteri');
-    localStorage.removeItem('email');
-    localStorage.removeItem('id');
+    localStorage.clear(); // Clear the entire localStorage
     setIsLoggedIn(false);
+    navigate("/", { replace: true });
   };
 
   // Suoritetaan sivun latautumisen yhteydessä
@@ -105,110 +96,201 @@ function Home() {
     }
   }, [activeParkingHall]);
 
-  // Getinfo hakee parkkihallien nimet ja vapaat paikat tietokannasta rest apin kautta.
   const getInfo = async () => {
     try {
-      const results = await axios.get('https://13.51.255.38:3000', {
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': 'Bearer ' + UserAuthContextValue.jwt  // Tämä voidaan ottaa käyttöön jos sivulla on kirjautuminen käytössä.
-          }
-      });
-
-      setInfo(results.data);
+      const results = await axios.get('https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-locations.json');
+  
+      setInfo(results.data.result);
     } catch (error) {
       console.error(error);
     }
   };
-
-  // Getparkinginfo hakee tiedot parkkipaikoista, boolean arvona on joko true (vihreä/vapaa) tai false (punainen/käytössä).
+  
   const getParkingInfo = async (parkingHallName) => {
     try {
       setParkingInfo([]);
-
-      const results = await axios.get(`https://13.51.255.38:3000/${parkingHallName}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          }
-      });
-
-      setParkingInfo(results.data);
-      setActiveParkingHall(parkingHallName); // Asettaa aktiivisen parkkihallin
+  
+      const encodedParkingHallName = encodeURIComponent(parkingHallName);
+      const apiUrl = `https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-slots.json?id=${encodedParkingHallName}`;
+  
+      const response = await axios.get(apiUrl);
+  
+      if (response.data && response.data.result) {
+        const parkingInfo = response.data.result.map((slot) => ({
+          id: slot.idParkit,
+          rekisteri: slot.rekisteri,
+          vapaa: slot.vapaa,
+          varattu: slot.varattu,
+          tolppa: slot.tolppa,
+          etaisyys: slot.etaisyys
+        }));
+        setParkingInfo(parkingInfo);
+        setActiveParkingHall(parkingHallName);
+        console.log(response.data.result);
+      } else {
+        console.error('Invalid response data:', response.data);
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching parking info:', error);
     }
   };
 
   return (
-      <div className="container">
-      <div className="wrapper">
-          <img className="image-div" src={parkkilogomuokattu} />
-          <div className='topBar'>
-
-          <div className='loginInformation'> {localStorage.getItem("rekisteri") &&
-          <span>Kirjauduttu sisään käyttäjällä: {email}</span>} </div>
-          {isLoggedIn ? (
-          <div>
-            {localStorage.getItem("id") ? (
-            <div className='resInformation'>
-              <span>Aktiivinen varaukset: Autopaikka {localStorage.getItem("id")} </span>
+    <div>
+      {isLoggedIn ? (
+        <div className='home-topBar'>
+          <div className='home-loginInformation'>
+            {localStorage.getItem("rekisteri") && (
+              <Link to="/edituser" className='home-res-btn'>Kirjauduttu sisään käyttäjällä: {email}</Link>
+            )}
+          </div>
+          {localStorage.getItem("id") ? (
+            <div className='home-resInformation'>
+              <span>Aktiiviset varaukset: Autopaikka {localStorage.getItem("id")}</span>
             </div>
           ) : (
-            <div className='resInformationNull'>
+            <div className='home-resInformationNull'>
               Ei varauksia.
             </div>
           )}
-            <Link to="/reservation" className='res-btn'>Tee paikkavaraus</Link>
-            <button onClick={handleLogout} className='buttonLogout'>Kirjaudu ulos</button>
-          </div>
-          ) : (
-              <>
-                { value => (<div>Login status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
-              <Link to="/login" className='login-btn'>Kirjaudu sisään</Link>
-              <Link to="/signup" className='signup-btn'>Luo käyttäjä</Link>
-              </>
-          )}
-          </div>
-          <div className='parking-halls'>
-          {info.map((i, index) => {
+          <Link to="/reservation" className='home-res-btn'>Tee paikkavaraus</Link>
+          <button onClick={handleLogout} className='home-buttonLogout'>Kirjaudu ulos</button>
+        </div>
+      ) : (
+        <>
+          { value => (<div>Login status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
+          <Link to="/login" className='home-login-btn'>Kirjaudu sisään</Link>
+          <Link to="/signup" className='home-signup-btn'>Luo käyttäjä</Link>
+        </>
+      )}
+      <div className="home-container">
+        <img className="home-background-img"></img>
+
+        <div className="home-wrapper">
+
+          <div className='home-parking-halls'>
+            {info.map((i, index) => {
               return (
-              <div
+                <div
                   key={index}
-                  className={`parking-hall ${i.sijainti === activeParkingHall ? "active" : ""}`}
-                  onClick={() => getParkingInfo(i.sijainti)}
-              >
+                  className={`home-parking-hall ${i.sijainti === activeParkingHall ? "active" : ""}`}
+                  onClick={() => handleParkingHallClick(i.sijainti)}
+                >
                   <div>{i.sijainti}</div>
-                  <div>Vapaita paikkoja: {i.vapaa}</div>
-              </div>
+                  <div>Vapaita paikkoja: {i.varattu} / {i.all}</div>
+                </div>
               );
-          })}
+            })}
           </div>
-          <div className="table-wrapper">
-          <table className="parking-spots-table">
-              <thead>
-              <tr>
-                  <th>Parkkipaikka</th>
-                  <th>Saatavuus</th>
-              </tr>
-              </thead>
-              <tbody>
-              {parkingInfo.map((i, index) => {
-                  return (
-                  <tr key={index}>
-                      <td>Autopaikka: {String(i.idParkit)}</td>
-                      <td className={i.vapaa ? "available" : "full"}>
-                      {i.vapaa ? "Saatavilla" : "Käytössä"}
-                      </td>
-                  </tr>
-                  );
-              })}
-              </tbody>
-          </table>
+
+          <div className="home-parking-hall-details">
+            {activeParkingHall && hallDetails.sijainti === activeParkingHall && (
+              <div>
+                <img src={hallDetails.image} alt="Parking Hall" />
+                <div className="home-parking-hall-location">Osoite: {hallDetails.osoite}</div>
+                <div className="home-parking-hall-phone">Puhelin: {hallDetails.puhelin}</div>
+              </div>
+            )}
           </div>
-          <Footer />
+
+          <div className="home-parking-spots" style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {parkingInfo.map((spot, index) => (
+              <div
+                key={index}
+                className={`home-parking-spot ${spot.vapaa ? 'available' : 'full'}`}
+                style={{
+                  width: '50px',
+                  height: '65px',
+                  margin: '7px',
+                  border: '2px solid #466b69',
+                  borderRadius: '5px',
+                  backgroundColor: spot.vapaa ? '#4CAF50' : 'red',
+                  color: 'white',
+                  textAlign: 'center',
+                  cursor: spot.vapaa ? 'pointer' : 'not-allowed',
+                  flex: '0 0 calc(33.33% - 20px)' /* 33.33% width with margins */
+                }}
+              >
+                <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{spot.id} {spot.tolppa == '1' && (<span> 🗲 </span>)} </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      </div>
+    </div>
   );
 }
 
 export default Home;
+
+  // return (
+  //     <div className="container">
+  //     <div className="wrapper">
+  //         <img className="image-div" src={parkkilogomuokattu} />
+  //         <div className='topBar'>
+
+  //         <div className='loginInformation'> {localStorage.getItem("rekisteri") &&
+  //         <span>Kirjauduttu sisään käyttäjällä: {email}</span>} </div>
+  //         {isLoggedIn ? (
+  //         <div>
+  //           {localStorage.getItem("id") ? (
+  //           <div className='resInformation'>
+  //             <span>Aktiivinen varaukset: Autopaikka {localStorage.getItem("id")} </span>
+  //           </div>
+  //         ) : (
+  //           <div className='resInformationNull'>
+  //             Ei varauksia.
+  //           </div>
+  //         )}
+  //           <Link to="/reservation" className='res-btn'>Tee paikkavaraus</Link>
+  //           <button onClick={handleLogout} className='buttonLogout'>Kirjaudu ulos</button>
+  //         </div>
+  //         ) : (
+  //             <>
+  //               { value => (<div>Login status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
+  //             <Link to="/login" className='login-btn'>Kirjaudu sisään</Link>
+  //             <Link to="/signup" className='signup-btn'>Luo käyttäjä</Link>
+  //             </>
+  //         )}
+  //         </div>
+  //         <div className='parking-halls'>
+  //         {info.map((i, index) => {
+  //             return (
+  //             <div
+  //                 key={index}
+  //                 className={`parking-hall ${i.sijainti === activeParkingHall ? "active" : ""}`}
+  //                 onClick={() => getParkingInfo(i.sijainti)}
+  //             >
+  //                 <div>{i.sijainti}</div>
+  //                 <div>Vapaita paikkoja: {i.vapaa}</div>
+  //             </div>
+  //             );
+  //         })}
+  //         </div>
+  //         <div className="table-wrapper">
+  //         <table className="parking-spots-table">
+  //             <thead>
+  //             <tr>
+  //                 <th>Parkkipaikka</th>
+  //                 <th>Saatavuus</th>
+  //             </tr>
+  //             </thead>
+  //             <tbody>
+  //             {parkingInfo.map((i, index) => {
+  //                 return (
+  //                 <tr key={index}>
+  //                     <td>Autopaikka: {String(i.idParkit)}</td>
+  //                     <td className={i.vapaa ? "available" : "full"}>
+  //                     {i.vapaa ? "Saatavilla" : "Käytössä"}
+  //                     </td>
+  //                 </tr>
+  //                 );
+  //             })}
+  //             </tbody>
+  //         </table>
+  //         </div>
+  //         <Footer />
+  //     </div>
+  //     </div>
+  // );
+

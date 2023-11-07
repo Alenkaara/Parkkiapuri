@@ -1,0 +1,245 @@
+get locations
+method get
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-locations.json
+return 
+{
+  "result": [
+    {
+      "all":,
+      "image":,
+      "osoite":,
+      "puhelin":,
+      "sijainti":,
+      "varattu":
+    }
+]
+}
+
+get slots
+method get
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-slots.json?id={sijainti}
+return {
+  "result": [
+    {
+      "etaisyys":
+      "idParkit":
+      "rekisteri":
+      "vapaa":
+      "varattu":
+      "tolppa":
+    }
+]}
+
+sign up
+method post
+body
+{
+email:
+salasana:
+rekisteri:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/sign-up-user.json
+returns
+email in use
+{
+  "result": {
+    "error": "User with email already exists"
+  }
+}
+register in use
+{
+  "result": {
+    "error": "User with register already exists"
+  }
+}
+email or password or register empty
+{
+  "result": {
+    "error": "Can't have empty email, password or register"
+  }
+}
+Invalid register
+{
+  "result": {
+    "error": "Invalid register"
+  }
+}
+user created
+{
+  "result": "successful"
+}
+
+user update
+method put
+body
+{
+email:
+salasana:
+rekisteri:
+userid:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/put-user.json
+returns
+user not found with id
+{
+  "result": {
+    "error": "user with id not found"
+  }
+}
+one parameter empty
+{
+  "result": {
+    "error": "Can't have empty email, password or register"
+  }
+}
+invalid register
+{
+  "result": {
+    "error": "Invalid register"
+  }
+}
+user updated
+{
+  "result": "successful"
+}
+
+login
+method post
+body
+{
+email:
+salasana:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/login-user.json
+returns
+user with email not found
+{
+  "result": {
+    "error": "User not found"
+  }
+}
+wrong password
+{
+  "result": {
+    "error": "Wrong password"
+  }
+}
+user login successful
+{
+  "email":,
+  "rekisteri":,
+  "userid":
+}
+
+2FA
+method post
+ensin
+{
+  email:
+}
+sitten
+{
+  email:,
+  password:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/2FA.json
+returns
+user with email not found
+{
+  "result": {
+    "error": "No user with found"
+  }
+}
+email sending successful
+{
+result:"successful"
+}
+wrong authentication code
+{
+  "result": {
+    "error": "wrong authentication code"
+  }
+}
+user authentication successful
+{
+result:"successful"
+}
+
+get reservation
+method get
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-reservation.json?userid={userid}
+return
+{
+  "result": [
+    {
+      "User_userid":,
+      "endTime":,
+      "id":,
+      "parkki":,
+      "rekisteri":,
+      "sijainti":,
+      "startTime":
+    }
+]
+}
+
+add reservation
+method post
+body
+{
+userid:
+idParkit:
+startTime:
+endTime:
+rekisteri:
+sijainti:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/add-reservation.json
+returns
+spot reserved already
+{
+  "result": {
+    "error": "Reservation cannot be made over other reservation"
+  }
+}
+reservation successful
+{
+  "result": "successful"
+}
+
+delete user reservation
+method post
+body
+{
+id:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/delete-reservation.json
+returns
+{
+  "result": "successful"
+}
+
+get user profile images
+method get
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/get-user-images.json
+returns
+{
+  "result": [
+	{
+	"key":
+	},
+]
+}
+
+set user profile image
+method post
+body
+{
+image:
+userid:
+}
+url=https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/set-user-image.json
+returns
+{
+  "result": "successful"
+}
