@@ -13,6 +13,7 @@ const Login = ({ setIsLoggedIn }) => {
 
   const [ loginProcessState, setLoginProcessState ] = useState("idle");
 
+  // onSubmit lähettää kirjautumistiedot ja tallentaa ne localstorageen
   const onSubmit = async (event) => {
     event.preventDefault();
     setLoginProcessState("processing");
@@ -50,6 +51,7 @@ const Login = ({ setIsLoggedIn }) => {
     }
   };
 
+  // Ohjaukset kirjautumisen eri vaiheisiin
   let loginUIControls = null;
   switch(loginProcessState) {
     case "idle":

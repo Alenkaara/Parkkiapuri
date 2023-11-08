@@ -7,12 +7,12 @@ const Startpage = () => {
   const navigate = useNavigate();
 
   const handleSignInClick = () => {
-    // Navigate to the 'login' route when the "Sign In" button is clicked
+    // Lähettää käyttäjän kirjautumiseen
     navigate('/login');
   };
 
   const handleCreateAccountClick = () => {
-    // Navigate to the 'signup' route when the "Create Account" button is clicked
+    // Lähettää käyttäjän rekisteröitymiseen
     navigate('/signup');
   };
 
@@ -38,6 +38,3 @@ const Startpage = () => {
 };
 
 export default Startpage;
-
-//     background-image: url('https://wallpapers.com/images/high/seton-hall-university-car-garage-parking-yttxcieu8u2kr8rp.webp');
-

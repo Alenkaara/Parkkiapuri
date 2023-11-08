@@ -12,7 +12,7 @@ export default function Signup () {
   const [ password, setPassword ] = useState('');
   const [ licensePlate, setLicensePlate ] = useState('');
 
-  // Signup ottaa parametrit email, salasana ja rekisteri ja postaa ne. #466b69;
+  // Signup ottaa parametrit email, salasana ja rekisteri ja postaa ne.
   const signup = () => {
     axios({
       method: "post",
@@ -26,7 +26,7 @@ export default function Signup () {
     })
       .then((response) => {
         if (response.data.result) {
-          // Check for different error cases and handle them accordingly
+          // Tarkistaa erilaisia virheitä, ja käsittelee ne
           if (response.data.result.error === "User with email already exists") {
             console.log("User with this email already exists.");
           } else if (response.data.result.error === "User with register already exists") {
@@ -45,41 +45,6 @@ export default function Signup () {
       })
       .catch((error) => console.error(error));
   };
-
-  // const signup = () => {
-  //   axios({
-  //     method: "post",
-  //     data: {
-  //       email: email,
-  //       salasana: password,
-  //       rekisteri: licensePlate,
-  //     },
-  //     url:
-  //       "https://eu-de.functions.appdomain.cloud/api/v1/web/ff38d0f2-e12e-497f-a5ea-d8452b7b4737/Parkki-apuri/sign-up-user.json",
-  //   })
-  //     .then((response) => {
-  //       if (response.data.error) {
-  //         console.log(response.data.error);
-  //       } else {
-  //         console.log(response.data.result);
-  //         navigate("/login");
-  //       }
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
-//   const signup = () => {
-//     axios({
-//         method: "post",
-//         data: {
-//             email: email,
-//             salasana: password,
-//             rekisteri: licensePlate,
-//         },
-//         url: "https://13.51.255.38:3000/user//",
-//     })
-//     .then((res) => console.log(res));
-//     navigate('/login')
-// };
 
   return (
     <div className="signupcsscontainer">

@@ -57,7 +57,7 @@ export default function EditUser () {
           localStorage.removeItem("email");
           localStorage.setItem("rekisteri", licensePlate);
           localStorage.setItem("email", email);
-          window.location.reload(); // Reloads the page after successful update
+          window.location.reload();
         } else {
           console.log(res.data.result.error);
         }
@@ -71,7 +71,6 @@ export default function EditUser () {
       <div className="editusercsscontainer">
         <div className="edituser-loginInformation">
           {localStorage.getItem("rekisteri") && ( <span>Kirjauduttu sisään käyttäjällä: {email1}</span> )}
-          {/* <Link to="/home"><button className="return-button">Takaisin</button></Link> */}
         </div>
         <div>Nykyiset käyttäjätiedot:</div>
         <div className="edituser-logindetails">

@@ -74,7 +74,7 @@ function Home() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.clear(); // Clear the entire localStorage
+    localStorage.clear(); // Tyhjentää localstoragen
     setIsLoggedIn(false);
     navigate("/", { replace: true });
   };
@@ -222,75 +222,3 @@ function Home() {
 }
 
 export default Home;
-
-  // return (
-  //     <div className="container">
-  //     <div className="wrapper">
-  //         <img className="image-div" src={parkkilogomuokattu} />
-  //         <div className='topBar'>
-
-  //         <div className='loginInformation'> {localStorage.getItem("rekisteri") &&
-  //         <span>Kirjauduttu sisään käyttäjällä: {email}</span>} </div>
-  //         {isLoggedIn ? (
-  //         <div>
-  //           {localStorage.getItem("id") ? (
-  //           <div className='resInformation'>
-  //             <span>Aktiivinen varaukset: Autopaikka {localStorage.getItem("id")} </span>
-  //           </div>
-  //         ) : (
-  //           <div className='resInformationNull'>
-  //             Ei varauksia.
-  //           </div>
-  //         )}
-  //           <Link to="/reservation" className='res-btn'>Tee paikkavaraus</Link>
-  //           <button onClick={handleLogout} className='buttonLogout'>Kirjaudu ulos</button>
-  //         </div>
-  //         ) : (
-  //             <>
-  //               { value => (<div>Login status: { value.jwt != null ? "Logged in": "Not logged in" }</div>) }
-  //             <Link to="/login" className='login-btn'>Kirjaudu sisään</Link>
-  //             <Link to="/signup" className='signup-btn'>Luo käyttäjä</Link>
-  //             </>
-  //         )}
-  //         </div>
-  //         <div className='parking-halls'>
-  //         {info.map((i, index) => {
-  //             return (
-  //             <div
-  //                 key={index}
-  //                 className={`parking-hall ${i.sijainti === activeParkingHall ? "active" : ""}`}
-  //                 onClick={() => getParkingInfo(i.sijainti)}
-  //             >
-  //                 <div>{i.sijainti}</div>
-  //                 <div>Vapaita paikkoja: {i.vapaa}</div>
-  //             </div>
-  //             );
-  //         })}
-  //         </div>
-  //         <div className="table-wrapper">
-  //         <table className="parking-spots-table">
-  //             <thead>
-  //             <tr>
-  //                 <th>Parkkipaikka</th>
-  //                 <th>Saatavuus</th>
-  //             </tr>
-  //             </thead>
-  //             <tbody>
-  //             {parkingInfo.map((i, index) => {
-  //                 return (
-  //                 <tr key={index}>
-  //                     <td>Autopaikka: {String(i.idParkit)}</td>
-  //                     <td className={i.vapaa ? "available" : "full"}>
-  //                     {i.vapaa ? "Saatavilla" : "Käytössä"}
-  //                     </td>
-  //                 </tr>
-  //                 );
-  //             })}
-  //             </tbody>
-  //         </table>
-  //         </div>
-  //         <Footer />
-  //     </div>
-  //     </div>
-  // );
-
